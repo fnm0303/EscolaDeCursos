@@ -4,7 +4,7 @@ using EscolaDeCursos.WebApp.Modulos.ModuloAluno.Dominio;
 
 namespace EscolaDeCursos.WebApp.Modulos.ModuloAluno.Infraestrutura;
 
-public sealed class RepositorioAlunoEmOrm : IRepositorio<Aluno>
+public sealed class RepositorioAlunoEmOrm : IRepositorioAluno
 {
     private readonly EscolaDeCursosDbContext dbContext;
 

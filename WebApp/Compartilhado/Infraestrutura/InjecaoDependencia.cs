@@ -5,6 +5,9 @@ using EscolaDeCursos.WebApp.Modulos.ModuloAluno.Infraestrutura;
 using EscolaDeCursos.WebApp.Modulos.ModuloInstrutor.Infraestrutura;
 using Microsoft.EntityFrameworkCore;
 using EscolaDeCursos.WebApp.Compartilhado.Infraestrutura.ORM;
+using EscolaDeCursos.WebApp.Modulos.ModuloCurso.Dominio;
+using EscolaDeCursos.WebApp.Modulos.ModuloCurso.Infraestrutura;
+
 
 namespace EscolaDeCursos.WebApp.Compartilhado.Infraestrutura;
 
@@ -12,7 +15,7 @@ public static class InjecaoDependencia
 {
     public static void AddInfraRepositories(this IServiceCollection services, IConfiguration configuration)
     {
-        //Configura persistência em arquivo
+        // Configura Persistência em Arquivo
         services.AddSingleton<ContextoJson>(_ =>
         {
             ContextoJson contexto = new();
@@ -36,6 +39,8 @@ public static class InjecaoDependencia
         });
 
         services.AddScoped<IRepositorioInstrutor, RepositorioInstrutorEmOrm>();
-        services.AddScoped<IRepositorioAluno, RepositorioAlunoEmArquivo>();
+        services.AddScoped<IRepositorioAluno, RepositorioAlunoEmOrm>();
+        services.AddScoped<IRepositorioCurso, RepositorioCursoEmArquivo>();
+        services.AddScoped<IRepositorioAula, RepositorioAulaEmArquivo>();
     }
 }
