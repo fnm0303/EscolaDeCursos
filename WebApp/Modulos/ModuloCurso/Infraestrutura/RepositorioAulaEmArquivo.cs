@@ -25,7 +25,7 @@ public sealed class RepositorioAulaEmArquivo(ContextoJson contexto)
         return base.Excluir(idSelecionado);
     }
 
-    public bool ExisteComNome(string nome, Guid? idIgnorado = null)
+    public bool ExisteComNome(Guid cursoId, string nome, Guid? idIgnorado = null)
     {
         return registros.Any(a =>
             a.Id != idIgnorado &&

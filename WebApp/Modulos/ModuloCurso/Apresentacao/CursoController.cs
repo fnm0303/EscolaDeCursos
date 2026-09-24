@@ -202,7 +202,7 @@ public class CursoController(
         if (!ModelState.IsValid)
             return RedirectToAction(nameof(GerenciarAulas), new { id = adicionarVm.CursoId });
 
-        if (repositorioAula.ExisteComNome(adicionarVm.Nome))
+        if (repositorioAula.ExisteComNome(adicionarVm.CursoId, adicionarVm.Nome))
             return RedirectToAction(nameof(GerenciarAulas), new { id = adicionarVm.CursoId });
 
         if (repositorioAula.ExisteComOrdem(adicionarVm.CursoId, adicionarVm.Ordem!.Value))
@@ -251,7 +251,7 @@ public class CursoController(
             return RedirectToAction(nameof(GerenciarAulas), new { id = cursoId });
         }
 
-        if (repositorioAula.ExisteComNome(editarVm.Nome, editarVm.Id))
+        if (repositorioAula.ExisteComNome(editarVm.CursoId, editarVm.Nome, editarVm.Id))
         {
             return RedirectToAction(nameof(GerenciarAulas), new { id = cursoId });
         }

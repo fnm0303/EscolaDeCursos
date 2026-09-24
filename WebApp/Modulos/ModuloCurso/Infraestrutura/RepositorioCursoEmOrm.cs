@@ -6,33 +6,60 @@ namespace EscolaDeCursos.WebApp.Modulos.ModuloCurso.Infraestrutura;
 
 public sealed class RepositorioCursoEmOrm : IRepositorioCurso
 {
+    private readonly EscolaDeCursosDbContext dbContext;
+
+    public RepositorioCursoEmOrm(EscolaDeCursosDbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
+
     public void Cadastrar(Curso entidade)
     {
-        throw new NotImplementedException();
+        dbContext.Cursos.Add(entidade);
+
+        dbContext.SaveChanges();
     }
 
     public bool Editar(Guid idSelecionado, Curso entidadeAtualizada)
     {
-        throw new NotImplementedException();
+        Curso? cursoSelecionado = SelecionarPorId(idSelecionado);
+
+        if (cursoSelecionado == null)
+            return false;
+
+        cursoSelecionado.Atualizar(entidadeAtualizada);
+
+        dbContext.SaveChanges();
+
+        return true;
     }
 
     public bool Excluir(Guid idSelecionado)
     {
-        throw new NotImplementedException();
+        Curso? curso = SelecionarPorId(idSelecionado);
+
+        if (curso == null)
+            return false;
+
+        dbContext.Cursos.Remove(curso);
+
+        dbContext.SaveChanges();
+
+        return true;
     }
 
     public bool ExisteComNome(string nome, Guid? idIgnorado = null)
     {
-        throw new NotImplementedException();
+        return dbContext.Cursos.Any(c => c.Id != idIgnorado && c.Nome.ToLower() == nome.ToLower());
     }
 
     public Curso? SelecionarPorId(Guid idSelecionado)
     {
-        throw new NotImplementedException();
+        return dbContext.Cursos.SingleOrDefault(c => c.Id == idSelecionado);
     }
 
     public List<Curso> SelecionarTodos()
     {
-        throw new NotImplementedException();
+        return dbContext.Cursos.OrderByDescending(c => c.Id).ToList();
     }
 }
