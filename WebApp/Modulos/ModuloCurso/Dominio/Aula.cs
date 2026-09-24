@@ -7,6 +7,7 @@ public class Aula : EntidadeBase<Aula>
     public string Nome { get; set; } = string.Empty;
     public int DuracaoEmMinutos { get; set; }
     public int Ordem { get; set; }
+    public Guid CursoId { get; set; } = Guid.Empty;
     public Curso Curso { get; set; } = null!;
 
     public Aula()

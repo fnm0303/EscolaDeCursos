@@ -40,7 +40,7 @@ public static class InjecaoDependencia
 
         services.AddScoped<IRepositorioInstrutor, RepositorioInstrutorEmOrm>();
         services.AddScoped<IRepositorioAluno, RepositorioAlunoEmOrm>();
-        services.AddScoped<IRepositorioCurso, RepositorioCursoEmArquivo>();
-        services.AddScoped<IRepositorioAula, RepositorioAulaEmArquivo>();
+        services.AddScoped<IRepositorioCurso, RepositorioCursoEmOrm>();
+        services.AddScoped<IRepositorioAula, RepositorioAulaEmOrm>();
     }
 }
